@@ -1,0 +1,5 @@
+cache/
+.replxx_history
+txData/admins.json
+txData/default/*
+!txData/default/config.json

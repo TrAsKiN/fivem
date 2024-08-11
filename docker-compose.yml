@@ -1,0 +1,39 @@
+services:
+  database:
+    restart: unless-stopped
+    image: mariadb:11
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_DATABASE: fivem
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+    volumes:
+      - data:/var/lib/mysql
+
+  fxserver:
+    restart: unless-stopped
+    image: traskin/fxserver:latest
+    ports:
+      - 40120:40120
+      - 30120:30120
+      - 30120:30120/udp
+    links:
+      - database:db
+    volumes:
+      - .:/var/server-data
+      - ./txData:/txData
+    depends_on:
+      - database
+
+  dbadmin:
+    restart: unless-stopped
+    image: phpmyadmin:latest
+    ports:
+      - 8080:80
+    links:
+      - database:db
+    depends_on:
+      - database
+
+volumes:
+  data:

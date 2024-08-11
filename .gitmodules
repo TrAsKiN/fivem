@@ -1,0 +1,6 @@
+[submodule "resources/bob74_ipl"]
+	path = resources/bob74_ipl
+	url = git@github.com:Bob74/bob74_ipl.git
+[submodule "resources/oxmysql"]
+	path = resources/oxmysql
+	url = git@github.com:overextended/oxmysql.git
